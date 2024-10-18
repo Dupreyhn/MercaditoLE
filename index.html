@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEJAWOOD</title>
+    <!-- ../css/styles.css el ../ es para retroceder a carpetas anteriores -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        
+        /* General */
+        body {
+            margin: 0;
+            font-family: 'HARRY P';
+        }
+
+        header {
+            background-color: #c9e265;
+            color: rgb(0, 0, 0);
+        }
+
+        /* Estilos del Carrusel */
+        .carousel {
+            position: relative;
+            max-width: 1600px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .carousel-slide {
+            display: none;
+            position: relative;
+            width: 100%;
+            height: 760px;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .carousel-text h1 {
+            font-size: 70px;
+            font-family: 'HARRY P';
+        }
+
+        .carousel-text p {
+            font-size: 40px;
+            font-family: 'HARRY P';
+        }
+
+        /* Sección de Productos */
+        .productos-section {
+            padding: 50px 20px;
+            background-color: #f8f8f8;
+            text-align: center;
+        }
+
+        .productos-section h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .producto-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .producto-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .producto-item h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .producto-item p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .producto-item:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Sección de la Galería */
+        .galeria-section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .galeria-grid img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            border-radius: 10px; /* Bordes redondeados */
+            transition: transform 0.2s, box-shadow 0.2s; /* Transiciones suaves */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+        }
+
+        .galeria-grid img:hover {
+            transform: scale(1.05); /* Efecto de escala al pasar el mouse */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Aumentar sombra al hover */
+        }
+
+        .hidden {
+            display: none; /* Oculta las imágenes con esta clase */
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 40px;
+            background-color: #c9e265;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #a8c54b; /* Cambia el color al pasar el mouse */
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/Logo.png" alt="Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#productos">Categoría</a></li>
+                <li><a href="#galeria">Producto</a></li>
+                <li><a href="#footer">Nosotros</a></li>
+            </ul>
+        </nav>
+        <!-- Sección del Carrusel -->
+        <div class="carousel">
+            <div class="carousel-slide">
+                <img src="images/tomates.jpg" alt="Imagen 1">
+                <div class="carousel-text">
+                    <h1>LEJAWOOD</h1>
+                    <p>Mercadito</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="images/verduras.jpg" alt="Imagen 2">
+                <div class="carousel-text">
+                    <h1>LEJAWOOD</h1>
+                    <p>Mercadito</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="images/estantes (1).jpg" alt="Imagen 3">
+                <div class="carousel-text">
+                    <h1>LEJAWOOD</h1>
+                    <p>Mercadito</p>
+                </div>
+            </div>
+        </div>
+
+    <!-- Sección de categorias -->
+    <section id="productos" class="productos-section">
+        <h2>Nuestras Categorías de Productos</h2>
+        <div class="productos-grid">
+            <!-- Categoría 1 -->
+            <div class="producto-item">
+                <img src="images/tostar.png" alt="Carnes">
+                <h3>Carnes</h3>
+                <p>Lo mejor en calidad</p>
+            </div>
+            <!-- Categoría 2 -->
+            <div class="producto-item">
+                <img src="images/vegetales.png" alt="Verduras y frutas">
+                <h3>Verduras y frutas</h3>
+                <p>Frescas para ti</p>
+            </div>
+            <!-- Categoría 3 -->
+            <div class="producto-item">
+                <img src="images/refresco.png" alt="Refrescos">
+                <h3>Refrescos</h3>
+                <p>Para climatizar tu dia </p>
+            </div>
+            <!-- Categoría 4 -->
+            <div class="producto-item">
+                <img src="images/snacks.png" alt="Snacks">
+                <h3>Snacks</h3>
+                <p>Para complacer tus antojos</p>
+            </div>
+        </div>
+    </section>
+        <!-- Sección de la Galería -->
+        <section id="galeria" class="galeria-section">
+            <h2>Productos</h2>
+            <div class="galeria-grid">
+                <!-- Imagenes -->
+                <div class="galeria-item">
+                    <img src="images/jugos.png" alt="Galería 1">
+                </div>
+                <div class="galeria-item">
+                    <img src="images/cornflakes.png" alt="Galería 2">
+                </div>
+                <div class="galeria-item">
+                    <img src="images/carne.png" alt="Galería 3">
+                </div>
+                <div class="galeria-item">
+                    <img src="images/piña.png" alt="Galería 4">
+                </div>
+                <div class="galeria-item">
+                    <img src="images/leche.png" alt="Galería 5">
+                </div>
+                <div class="galeria-item">
+                    <img src="images/coca cola.png" alt="Galería 6">
+                </div>
+                <div class="galeria-item">
+                    <img src="images/galletas.png" alt="Galería 7">
+                </div>
+                <div class="galeria-item">
+                    <img src="images/chorizo.png" alt="Galería 8">
+                </div>
+                <!-- Más imágenes ocultas -->
+                <div class="galeria-item hidden">
+                    <img src="images/bebidas.png" alt="Galería 9">
+                </div>
+                <div class="galeria-item hidden">
+                    <img src="images/frutas.png" alt="Galería 10">
+                </div>
+                <!-- Puedes añadir más imágenes ocultas -->
+            </div>
+            <button id="mostrar-mas" class="btn-galeria">Mostrar más</button>
+        </section>
+    
+    
+        
+        <div id="modal" class="modal" style="display: none;">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-content">
+                <img id="modalImage" src="" alt="">
+            </div>
+        </div>
+
+        <footer id="footer">
+            
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>MERCADITO LEJAWOOD | Horario: 6:00 AM - 10:00 PM</p>
+            <p>&copy; 2024 Mercadito LEJAWOOD - Todos los derechos reservados</p>
+            <p>Diseñado por: <a href="agrega el link de su red social que guste" target="_blank">Andy Padilla</a></p>
+        </footer>
+
+    </header>
+    <script src="js/scripts.js"></script>
+</body>
+</html>
